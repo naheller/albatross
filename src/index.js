@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 import { string } from 'prop-types'
-import { test } from './api'
+import { test, authorizeAppWithSpotify } from './api'
 
 class App extends PureComponent {
     constructor(props) {
@@ -11,10 +11,10 @@ class App extends PureComponent {
         }
     }
 
-    componentDidMount() {
-        this.getTitle()
-        .then(title => this.setState({ title }))
-    }
+    // componentDidMount() {
+    //     this.getTitle()
+    //     .then(title => this.setState({ title }))
+    // }
 
     async getTitle() {
         const { data } = await test()
@@ -22,7 +22,7 @@ class App extends PureComponent {
     }
 
     render() {
-        return <div>{this.state.title}</div>
+        return <button onClick={() => authorizeAppWithSpotify()}>Authorize</button>
     }
 }
 

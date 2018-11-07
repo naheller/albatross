@@ -9,3 +9,19 @@ export const test = () => {
     })
     .then(res => res)
 }
+
+export const authorizeAppWithSpotify = () => {
+    return axios({
+        method: 'get',
+        url: `https://accounts.spotify.com/authorize`,
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        params: {
+            client_id: '23010df69667498196239780f3a7318c',
+            response_type: 'code',
+            redirect_uri: 'http://localhost:8000/'
+        }
+    })
+    .then(res => console.log(res))
+}
