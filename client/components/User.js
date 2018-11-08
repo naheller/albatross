@@ -13,8 +13,8 @@ class User extends Component {
   /** When we mount, get the tokens from react-router and initiate loading the info */
   componentDidMount() {
     // params injected via react-router, dispatch injected via connect
-    const {dispatch, params} = this.props;
-    const {accessToken, refreshToken} = params;
+    const {dispatch, match} = this.props;
+    const {accessToken, refreshToken} = match.params;
     dispatch(setTokens({accessToken, refreshToken}));
     dispatch(getMyInfo());
   }

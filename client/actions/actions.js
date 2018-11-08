@@ -17,8 +17,9 @@ export function setTokens({accessToken, refreshToken}) {
 
 /* get the user's info from the /me api */
 export function getMyInfo() {
+    console.log('get my info')
   return dispatch => {
-    dispatch({ type: SPOTIFY_ME_BEGIN});
+    dispatch({ type: SPOTIFY_ME_BEGIN });
     spotifyApi.getMe().then(data => {
       dispatch({ type: SPOTIFY_ME_SUCCESS, data: data });
     }).catch(e => {

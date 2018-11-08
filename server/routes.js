@@ -25,11 +25,11 @@ const spotifyApi = new Spotify({
 const generateRandomString = N => (Math.random().toString(36)+Array(N).join('0')).slice(2, N+2);
 
 /**
- * The /login endpoint
+ * The /login-spotify endpoint
  * Redirect the client to the spotify authorize url, but first set that user's
  * state in the cookie.
  */
-router.get('/login', (_, res) => {
+router.get('/login-spotify', (_, res) => {
   const state = generateRandomString(16);
   res.cookie(STATE_KEY, state);
   res.redirect(spotifyApi.createAuthorizeURL(scopes, state));

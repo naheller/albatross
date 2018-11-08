@@ -5,7 +5,7 @@ export default class Login extends Component {
     return (
       <div className="login">
         <h2>Spotify Auth</h2>
-        <a href="/login">Login</a>
+        <a href="/login-spotify">Login</a>
       </div>
     );
   }
