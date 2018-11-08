@@ -1,3 +1,4 @@
+keys.*
 logs
 *.log
 npm-debug.log*
