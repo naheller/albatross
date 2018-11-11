@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect }      from 'react-redux';
 import {
   getMyInfo,
+  getMyAlbums,
   setTokens,
 }   from '../actions/actions';
 
@@ -17,10 +18,22 @@ class User extends Component {
     const {accessToken, refreshToken} = match.params;
     dispatch(setTokens({accessToken, refreshToken}));
     dispatch(getMyInfo());
+    dispatch(getMyAlbums());
+  }
+
+  showAlbums() {
+      if (this.props.savedAlbums.status === 'SUCCESS') {
+          return (
+            <ul>{this.props.savedAlbums.data.items.map(album => {
+                return <li>{album.album.name} - {album.album.artists[0].name}</li>
+            })}</ul>
+          )
+      }
   }
 
   /** Render the user's info */
   render() {
+      console.log('user props', this.props)
     const { accessToken, refreshToken, user } = this.props;
     const { loading, display_name, images, id, email, external_urls, href, country, product } = user;
     const imageUrl = images[0] ? images[0].url : "";
@@ -44,6 +57,7 @@ class User extends Component {
             <li><span>Product</span><span>{product}</span></li>
           </ul>
         </div>
+        {this.showAlbums()}
       </div>
     );
   }

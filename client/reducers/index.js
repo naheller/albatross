@@ -1,5 +1,6 @@
 import {
-    SPOTIFY_TOKENS, SPOTIFY_ME_BEGIN, SPOTIFY_ME_SUCCESS, SPOTIFY_ME_FAILURE
+    SPOTIFY_TOKENS, SPOTIFY_ME_BEGIN, SPOTIFY_ME_SUCCESS, SPOTIFY_ME_FAILURE,
+    SPOTIFY_ME_ALBUMS_BEGIN, SPOTIFY_ME_ALBUMS_SUCCESS, SPOTIFY_ME_ALBUMS_FAILURE
   } from '../actions/actions';
   
   /** The initial state; no tokens and no user info */
@@ -19,6 +20,11 @@ import {
       product: null,
       type: null,
       uri: null,
+    },
+    savedAlbums: {
+        data: {},
+        status: 'NOT_STARTED',
+        error: {}
     }
   };
   
@@ -47,6 +53,15 @@ import {
     // currently no failure state :(
     case SPOTIFY_ME_FAILURE:
       return state;
+
+    case SPOTIFY_ME_ALBUMS_BEGIN:
+      return { ...state, savedAlbums: { status: 'LOADING' } }
+  
+    case SPOTIFY_ME_ALBUMS_SUCCESS:
+    return { ...state, savedAlbums: { data: action.data, status: 'SUCCESS' } }
+  
+    case SPOTIFY_ME_ALBUMS_FAILURE:
+    return { ...state, savedAlbums: { status: 'ERROR', error: action.error } }
   
     default:
       return state;
