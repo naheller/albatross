@@ -1,33 +1,26 @@
 import React, { PureComponent, memo } from 'react'
-import { Consumer } from '../Context'
-const UserContext = React.createContext({hi: 'bye'});
+import Context from '../Context'
+// const UserContext = React.createContext({hi: 'bye'});
 
 class User extends PureComponent {
-    static contextType = UserContext
+    static contextType = Context  
 
-    constructor(props) {
-        super(props)
+    // constructor(props) {
+    //     super(props)
 
-        console.log('user props', this.props)
-        const { match } = this.props;
-        const { accessToken, refreshToken } = match.params;
-    }
+    //     console.log('user props', this.props)
+    // }
 
     componentDidMount() {
-        console.log('CDM - user context', this.context)
+        console.log('User context', this.context)
+        const { match } = this.props;
+        const { accessToken, refreshToken } = match.params;
+        this.context.setAuthTokens({ accessToken, refreshToken })
     }
 
     render() {
         return (
             <div>User</div>
-            // <Consumer>
-            //     {context => {
-            //         console.log('user context', context)
-            //         return (
-            //             <div>User</div>
-            //         )
-            //     }}
-            // </Consumer>
         );
     } 
 }

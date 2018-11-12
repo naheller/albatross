@@ -1,7 +1,9 @@
 export const initialState = {
-    accessToken: null,
-    refreshToken: null,
-    user: {
+    auth: {
+        accessToken: null,
+        refreshToken: null,
+    },
+    userProfile: {
         loading: false,
         country: null,
         display_name: null,

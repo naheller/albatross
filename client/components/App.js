@@ -1,16 +1,20 @@
 import React, { PureComponent } from 'react';
-import { Consumer } from '../Context'
+import Context from '../Context'
 
 export default class App extends PureComponent {
+    static contextType = Context  
+
     render() {
+        console.log('App context', this.context)
         return (
-            <Consumer>
-                {context => {
-                    console.log(context)
-                    console.log(this.props)
-                    return <div>App</div>
-                }}
-            </Consumer>
+            <div>App</div>
+            // <Consumer>
+            //     {context => {
+            //         console.log(context)
+            //         console.log(this.props)
+            //         return <div>App</div>
+            //     }}
+            // </Consumer>
         )
     }
 }

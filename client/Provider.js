@@ -1,26 +1,19 @@
 import React, { PureComponent } from 'react';
 import Spotify from 'spotify-web-api-js';
-// import initialState from './state'
+import { initialState } from './state'
 // import { getUserProfile } from './spotifyMethods'
 
-import { Provider } from './Context'
+import Context from './Context'
 
 const spotifyApi = new Spotify();
 
 export default class AppProvider extends PureComponent {
     constructor(props) {
         super(props)
-        this.state = {
-            auth: {
-                accessToken: null,
-                refreshToken: null
-            },
-            userProfile: {},
-            savedAlbums: {}
-        }
+        this.state = initialState
     }
 
-    setAuthTokens(tokens) {
+    setAuthTokens = (tokens) => {
         console.log('setting auth tokens', tokens)
         const { accessToken, refreshToken } = tokens
         this.setState({
@@ -48,13 +41,13 @@ export default class AppProvider extends PureComponent {
 
     render() {
         return (
-            <Provider value={{ 
+            <Context.Provider value={{ 
                 ...this.state, 
                 getUserProfile: this.getUserProfile,
                 setAuthTokens: this.setAuthTokens
             }}>
                 {this.props.children}
-            </Provider>
+            </Context.Provider>
         )
     }
 }
