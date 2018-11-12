@@ -1,9 +1,11 @@
-export const initialState = {
+export const state = {
     auth: {
+        status: 'NOT_STARTED',
         accessToken: null,
         refreshToken: null,
     },
     userProfile: {
+        status: 'NOT_STARTED',
         loading: false,
         country: null,
         display_name: null,
@@ -20,6 +22,6 @@ export const initialState = {
     savedAlbums: {
         data: {},
         status: 'NOT_STARTED',
-        error: {}
+        error: {},
     }
 };

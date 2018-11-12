@@ -19,6 +19,7 @@
         "history": "^4.7.2",
         "html-loader": "^0.5.5",
         "html-webpack-plugin": "^3.2.0",
+        "lodash": "^4.17.11",
         "logger": "^0.0.1",
         "morgan": "^1.9.1",
         "path": "^0.12.7",

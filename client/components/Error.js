@@ -4,7 +4,7 @@ import React, { Component } from 'react';
  * Our error page
  * Displays the error
  */
-export default class Login extends Component {
+export default class Error extends Component {
   render() {
     // injected via react-router
     const { errorMsg } = this.props.params;
